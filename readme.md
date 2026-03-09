@@ -15,3 +15,16 @@ Once indexed, the knowledge base will be ready for semantic search.
 - Spring Boot
 - Docker
 - Postgres
+
+### Start Docker 
+
+```shell
+docker compose up -d
+``` 
+
+### Endpoints
+
+1. [Actuator](http://127.0.0.1:8080/actuator)
+2. [Health Check](http://127.0.0.1:8080/actuator/health)
+3. [Open API](http://127.0.0.1:8080/swagger-ui.html)
+
