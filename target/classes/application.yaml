@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: knowledgebase
+
+
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/vectordb
+    username: admin
+    password: admin
+
+  flyway:
+
+    enabled: true
+    locations:
+      - classpath:db/migration
