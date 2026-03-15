@@ -1,17 +1,7 @@
 package com.example.knowledgebase.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "knowledge_document_chunk")
@@ -29,7 +19,7 @@ public class KnowledgeDocumentChunk {
 
     private Integer chunkIndex;
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String chunkText;
 
     @Column(columnDefinition = "vector(1536)")
