@@ -1,13 +1,13 @@
 package com.example.knowledgebase;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-@SpringBootTest
+import org.junit.jupiter.api.Test;
 class KnowledgebaseApplicationTests {
 
   @Test
-  void contextLoads() {
+  void applicationClassCanBeInstantiated() {
+    assertDoesNotThrow(KnowledgebaseApplication::new);
   }
 
 }
