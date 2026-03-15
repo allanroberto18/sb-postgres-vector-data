@@ -23,3 +23,10 @@
 hs_err_pid*
 replay_pid*
 
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/compiler.xml
+/.idea/dataSources.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/vcs.xml
