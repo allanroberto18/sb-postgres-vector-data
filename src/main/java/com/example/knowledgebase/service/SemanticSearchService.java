@@ -1,5 +1,6 @@
 package com.example.knowledgebase.service;
 
+import com.example.knowledgebase.api.AskQuestionRequest;
 import com.example.knowledgebase.api.AskQuestionResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,17 +17,22 @@ public class SemanticSearchService {
     private final PromptBuilder promptBuilder;
     private final AiClient aiClient;
 
-    public AskQuestionResponse ask(String question) {
+    public AskQuestionResponse ask(AskQuestionRequest request) {
 
         List<String> contextChunks =
-                retrievalService.retrieveRelevantChunks(question, TOP_K);
+                retrievalService.retrieveRelevantChunks(
+                        request.question(),
+                        request.keywordQuery(),
+                        request.metadataFilters(),
+                        TOP_K
+                );
 
-        String prompt = promptBuilder.build(question, contextChunks);
+        String prompt = promptBuilder.build(request.question(), contextChunks);
 
         String answer = aiClient.ask(prompt);
 
         return new AskQuestionResponse(
-                question,
+                request.question(),
                 answer,
                 contextChunks
         );

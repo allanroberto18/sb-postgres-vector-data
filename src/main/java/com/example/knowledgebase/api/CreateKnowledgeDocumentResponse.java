@@ -1,5 +1,10 @@
 package com.example.knowledgebase.api;
 
-public record CreateKnowledgeDocumentResponse(Long id) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record CreateKnowledgeDocumentResponse(
+        @Schema(example = "1", description = "Generated document identifier")
+        Long id
+) {
 
 }

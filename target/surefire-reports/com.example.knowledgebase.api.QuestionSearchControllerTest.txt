@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.knowledgebase.api.QuestionSearchControllerTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.047 s -- in com.example.knowledgebase.api.QuestionSearchControllerTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.552 s -- in com.example.knowledgebase.api.QuestionSearchControllerTest

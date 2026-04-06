@@ -25,6 +25,7 @@ public class KnowledgeDocumentService {
         KnowledgeDocument document = KnowledgeDocument.builder()
                 .title(request.title())
                 .content(request.content())
+                .metadata(request.metadata())
                 .indexStatus(IndexStatus.PENDING)
                 .build();
 

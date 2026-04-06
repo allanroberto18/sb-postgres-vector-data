@@ -20,6 +20,8 @@ import com.example.knowledgebase.domain.KnowledgeDocument;
 import com.example.knowledgebase.event.KnowledgeDocumentCreatedEvent;
 import com.example.knowledgebase.repository.KnowledgeDocumentRepository;
 
+import java.util.Map;
+
 @ExtendWith(MockitoExtension.class)
 class KnowledgeDocumentServiceTest {
 
@@ -42,12 +44,17 @@ class KnowledgeDocumentServiceTest {
     void createsPendingDocumentAndPublishesCreatedEvent() {
 
         CreateKnowledgeDocumentRequest request =
-                new CreateKnowledgeDocumentRequest("Java Virtual Threads", "Some content");
+                new CreateKnowledgeDocumentRequest(
+                        "Java Virtual Threads",
+                        "Some content",
+                        Map.of("source", "docs")
+                );
 
         KnowledgeDocument saved = KnowledgeDocument.builder()
                 .id(42L)
                 .title(request.title())
                 .content(request.content())
+                .metadata(request.metadata())
                 .indexStatus(IndexStatus.PENDING)
                 .build();
 
@@ -62,6 +69,7 @@ class KnowledgeDocumentServiceTest {
         KnowledgeDocument persisted = documentCaptor.getValue();
         assertEquals("Java Virtual Threads", persisted.getTitle());
         assertEquals("Some content", persisted.getContent());
+        assertEquals(Map.of("source", "docs"), persisted.getMetadata());
         assertEquals(IndexStatus.PENDING, persisted.getIndexStatus());
 
         KnowledgeDocumentCreatedEvent event = eventCaptor.getValue();

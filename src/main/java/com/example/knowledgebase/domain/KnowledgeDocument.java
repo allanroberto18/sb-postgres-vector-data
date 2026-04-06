@@ -2,8 +2,11 @@ package com.example.knowledgebase.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 @Entity
 @Table(name = "knowledge_document")
@@ -23,6 +26,11 @@ public class KnowledgeDocument {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @Builder.Default
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(columnDefinition = "jsonb")
+    private Map<String, String> metadata = Map.of();
+
     @Enumerated(EnumType.STRING)
     private IndexStatus indexStatus;
 
@@ -38,10 +46,18 @@ public class KnowledgeDocument {
         if (indexStatus == null) {
             indexStatus = IndexStatus.PENDING;
         }
+
+        if (metadata == null) {
+            metadata = Map.of();
+        }
     }
 
     @PreUpdate
     public void preUpdate() {
         updatedAt = OffsetDateTime.now();
+
+        if (metadata == null) {
+            metadata = Map.of();
+        }
     }
 }
